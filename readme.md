@@ -103,39 +103,4 @@ interface RememberMe {
 }
 ```
 
-## Security
 
-### Email Confirmation
-
-- activation link
-  - expires in 12h (_temporary_)
-  - signed with HMAC SHA256 (_unforgeable_)
-- user email
-  - hashed with SHA1 (_unpredictable_)
-
-### Password Reset
-
-- reset token
-  - pseudo-random string of 80 hex chars (_unpredictable_)
-  - signed with HMAC SHA256 before storing in DB (_doesn't compromise accounts_)
-  - expires in 1h (_short-lived_)
-- reset link
-  - when used, invalidates old tokens (_one-time use_)
-
-### Remember Me
-
-- remember me token
-  - pseudo-random string of 80 hex chars (_unpredictable_)
-  - signed with HMAC SHA256 before storing in DB (_doesn't compromise accounts_)
-  - expires in 1 week (_long-lived_)
-- remember me cookie
-  - signed with HMAC SHA256 (_unforgeable_)
-  - creates a new user session unless already authenticated
-
-## Inspiration
-
-Originally prompted by [Your Node.js authentication tutorial is (probably) wrong](https://medium.com/hackernoon/your-node-js-authentication-tutorial-is-wrong-f1a3bf831a46). Although its critique is on point, the article sadly doesn't offer any concrete solutions. This repo is my attempt to address those remarks in code.
-
-## Contributions
-
-I only know so much, so there are likely things I missed. If you see something that doesn't make sense, poses a vulnerability, or otherwise needs improvement, please feel free to open an issue or submit a PR. All contributions are welcome!
